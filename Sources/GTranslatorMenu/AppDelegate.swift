@@ -206,7 +206,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSWindowDele
         let mainMenu = NSMenu()
         
         // Menu Applicazione
-        let appMenuItem = NSMenuItem(title: "GTranslator", action: nil, keyEquivalent: "")
+        let appMenuItem = NSMenuItem(title: "Gtranslator", action: nil, keyEquivalent: "")
         let appMenu = NSMenu()
         appMenu.addItem(NSMenuItem(title: "Preferenze", action: #selector(showPreferences), keyEquivalent: KeyboardShortcut.openPreferences.rawValue))
         appMenu.addItem(NSMenuItem.separator())
@@ -304,7 +304,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSWindowDele
             )
             
             preferencesWindow?.center()
-            preferencesWindow?.title = "Preferenze GTranslator"
+            preferencesWindow?.title = "Preferenze Gtranslator"
             preferencesWindow?.contentViewController = hostingController
             
             // Importante: imposta il delegate per gestire correttamente gli eventi di chiusura

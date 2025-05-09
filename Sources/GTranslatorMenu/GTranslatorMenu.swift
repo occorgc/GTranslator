@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct GTranslatorMenuApp: App {
+struct GtranslatorApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {

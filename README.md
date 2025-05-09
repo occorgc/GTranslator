@@ -2,6 +2,8 @@
 
 Un'applicazione per macOS che fornisce servizi di traduzione direttamente dalla barra dei menu.
 
+Questo progetto è un fork di [GTranslator - GNOME Shell Extension](https://github.com/Griguoli09/gnome-shell-gtranslator-extension.git) modificato per funzionare su macOS12+.
+
 ## Caratteristiche
 - Traduzione rapida di testo
 - Accesso dalla barra dei menu di macOS
