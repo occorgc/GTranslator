@@ -6,6 +6,8 @@ This project is a variation of [GTranslator - GNOME Shell Extension](https://git
 
 The reason for this project? To leverage Gemini's translation capabilities, having everything readily available on your Mac. Furthermore, the distinguishing strength of this project is the possibility of adding "context." For example, when translating technical terms that need proper contextualization for accurate translations.
 
+![Screenshot of GTranslator extension](screenshot.png)
+
 ## Features
 
 - ✅ **Direct translation from the top bar**: Quick and easy access from the GNOME panel
