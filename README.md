@@ -2,7 +2,7 @@
 
 A macOS menu bar application that provides translation services using the Google Gemini API.
 
-This project is a fork of [GTranslator - GNOME Shell Extension](https://github.com/Griguoli09/gnome-shell-gtranslator-extension.git) modified to work on macOS 11+.
+This project is a variation of [GTranslator - GNOME Shell Extension](https://github.com/Griguoli09/gnome-shell-gtranslator-extension.git) modified to work on macOS 11+.
 
 The reason for this project? To leverage Gemini's translation capabilities, having everything readily available on your Mac. Furthermore, the distinguishing strength of this project is the possibility of adding "context." For example, when translating technical terms that need proper contextualization for accurate translations.
 
