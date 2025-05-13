@@ -1,20 +1,21 @@
-# Gtranslator
+# Gtranslator - macOS version
 
-A macOS application that provides translation services directly from the menu bar.
+A macOS menu bar application that provides translation services using the Google Gemini API.
 
 This project is a fork of [GTranslator - GNOME Shell Extension](https://github.com/Griguoli09/gnome-shell-gtranslator-extension.git) modified to work on macOS 11+.
 
 The reason for this project? To leverage Gemini's translation capabilities, having everything readily available on your Mac. Furthermore, the distinguishing strength of this project is the possibility of adding "context." For example, when translating technical terms that need proper contextualization for accurate translations.
 
 ## Features
-- Quick text translation
-- Access from the macOS menu bar
-- Keyboard shortcut support
-- Context-aware translation
-- Image text recognition
-- Auto-copy translated text
-- Multi-language support
-- Minimalist and functional design
+
+- ✅ **Direct translation from the top bar**: Quick and easy access from the GNOME panel
+- ✅ **Google Gemini API support**: Uses the powerful Google Gemini 1.5 Flash translation model
+- ✅ **Context-aware translation**: Option to add context to improve translation quality
+- ✅ **Clipboard translation**: "Translate from Clipboard" feature to translate already copied text
+- ✅ **Image text recognition**: Extract and translate text from images in the clipboard
+- ✅ **Auto-copy**: Automatically copies translated text to the clipboard
+- ✅ **Multi-language support**: Translation between multiple languages
+- ✅ **Intuitive interface**: Simple and functional design
 
 ## System Requirements
 - macOS 11.0 or later
