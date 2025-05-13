@@ -1,4 +1,4 @@
-# Gtranslator - macOS version
+# GTranslator - macOS version
 
 A macOS menu bar application that provides translation services using the Google Gemini API.
 
