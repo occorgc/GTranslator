@@ -16,7 +16,7 @@ struct DragAndDropView: View {
                     .font(.largeTitle)
                     .foregroundColor(isActive ? .blue : .gray)
                 
-                Text("Trascina qui un file o un'immagine")
+                Text("Drop a file or image here")
                     .font(.caption)
                     .foregroundColor(isActive ? .blue : .gray)
                     .multilineTextAlignment(.center)
@@ -49,13 +49,13 @@ struct DragAndDropView: View {
     }
 }
 
-// Header della View
+// Header View
 struct HeaderView: View {
     @Binding var showPreferences: Bool
     
     var body: some View {
         HStack {
-            Text("GTranslator")
+            Text("Gtranslator")
                 .font(.headline)
             
             Spacer()
@@ -73,7 +73,7 @@ struct HeaderView: View {
     }
 }
 
-// Selettori delle lingue
+// Language selectors
 struct LanguageSelectionView: View {
     @Binding var sourceLanguage: String
     @Binding var targetLanguage: String
@@ -98,11 +98,11 @@ struct LanguageSelectionView: View {
             }
             .frame(width: 120)
             .onChange(of: targetLanguage) { newValue in
-                // Aggiorna la lingua predefinita nelle preferenze
+                // Updates default language in preferences
                 PreferencesManager.shared.defaultTargetLanguage = newValue
             }
             .onAppear {
-                // Imposta la lingua predefinita dalle preferenze all'avvio
+                // Sets default language from preferences at startup
                 targetLanguage = PreferencesManager.shared.defaultTargetLanguage
             }
         }
@@ -110,7 +110,7 @@ struct LanguageSelectionView: View {
     }
 }
 
-// Area di input
+// Input area
 struct InputTextView: View {
     @Binding var text: String
     
@@ -128,7 +128,7 @@ struct InputTextView: View {
     }
 }
 
-// Area di contesto
+// Context area
 struct ContextView: View {
     @Binding var showContextField: Bool
     @Binding var context: String
@@ -141,7 +141,7 @@ struct ContextView: View {
                 HStack {
                     Image(systemName: showContextField ? "minus" : "plus")
                         .font(.caption)
-                    Text(showContextField ? "Nascondi contesto" : "Aggiungi contesto")
+                    Text(showContextField ? "Hide context" : "Add context")
                         .font(.caption)
                 }
             }
@@ -175,14 +175,14 @@ struct TranslationButtonsView: View {
     @Binding var showContextField: Bool
     @Binding var context: String
     var translatorService: TranslatorService
-    var onTranslateFromClipboard: () -> Void  // Nuova callback per l'azione di incolla
+    var onTranslateFromClipboard: () -> Void  // Callback for paste action
     
     var body: some View {
         HStack {
             Button(action: {
                 translateText()
             }) {
-                Text("Traduci")
+                Text("Translate")
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.bordered)
@@ -190,9 +190,9 @@ struct TranslationButtonsView: View {
             .disabled(textToTranslate.isEmpty || translatorService.isLoading)
             
             Button(action: {
-                onTranslateFromClipboard()  // Usa la callback invece del metodo locale
+                onTranslateFromClipboard()  // Uses callback instead of local method
             }) {
-                Text("Da appunti")
+                Text("From clipboard")
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.bordered)
@@ -222,20 +222,20 @@ struct TranslationButtonsView: View {
                 NSPasteboard.general.setString(translated, forType: .string)
             }
         } else if let error = translatorService.errorMessage {
-            translatedText = "Errore: \(error)"
+            translatedText = "Error: \(error)"
         } else {
-            translatedText = "Errore durante la traduzione"
+            translatedText = "Error during translation"
         }
     }
 }
 
-// Area risultati
+// Results area
 struct ResultView: View {
     @Binding var translatedText: String
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Risultato:")
+            Text("Result:")
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
                 .font(.caption)
@@ -258,7 +258,7 @@ struct ResultView: View {
     }
 }
 
-// Pulsanti azione in fondo
+// Action buttons at the bottom
 struct ActionButtonsView: View {
     @Binding var translatedText: String
     @Binding var textToTranslate: String
@@ -272,21 +272,21 @@ struct ActionButtonsView: View {
                 NSPasteboard.general.setString(translatedText, forType: .string)
             }) {
                 Image(systemName: "doc.on.doc")
-                Text("Copia")
+                Text("Copy")
             }
             .disabled(translatedText.isEmpty)
             
             Spacer()
             
             Button(action: {
-                // Pulisci tutti i campi
+                // Clear all fields
                 textToTranslate = ""
                 translatedText = ""
                 translatorService.extractedText = ""
                 showExtractedText = false
             }) {
                 Image(systemName: "trash")
-                Text("Pulisci")
+                Text("Clear")
             }
             .disabled(textToTranslate.isEmpty && translatedText.isEmpty)
             
@@ -296,7 +296,7 @@ struct ActionButtonsView: View {
                 NSApplication.shared.terminate(nil)
             }) {
                 Image(systemName: "xmark.circle")
-                Text("Esci")
+                Text("Quit")
             }
         }
         .padding(.horizontal)

@@ -28,13 +28,13 @@ class PreferencesManager: ObservableObject {
     
     init() {
         self.apiKey = UserDefaults.standard.string(forKey: "apiKey") ?? ""
-        self.defaultTargetLanguage = UserDefaults.standard.string(forKey: "defaultTargetLanguage") ?? "Italiano"
+        self.defaultTargetLanguage = UserDefaults.standard.string(forKey: "defaultTargetLanguage") ?? "English"
         self.autoCopyToClipboard = UserDefaults.standard.bool(forKey: "autoCopyToClipboard")
         self.ocrApiKey = UserDefaults.standard.string(forKey: "ocrApiKey") ?? ""
         
-        // Imposta valori di default se è il primo avvio
+        // Set default values on first launch
         if self.apiKey.isEmpty {
-            self.apiKey = "AIzaSyC7CedU0JuheHSkKv_fquWngcuBZrhAKsk" // Chiave di default (cambiare con la propria)
+            self.apiKey = "" // The user will need to provide their own API key
         }
         if !UserDefaults.standard.bool(forKey: "firstLaunchDone") {
             self.autoCopyToClipboard = true
@@ -51,24 +51,24 @@ struct PreferencesView: View {
     @State private var isOCRApiKeySaved = false
     
     private let allLanguages = [
-        "Italiano", "Inglese", "Francese", "Tedesco", "Spagnolo", "Portoghese", 
-        "Russo", "Cinese", "Giapponese", "Coreano", "Arabo", "Hindi", 
-        "Polacco", "Olandese", "Svedese", "Greco", "Turco", "Ebraico", 
-        "Tailandese", "Vietnamita", "Indonesiano", "Malese", "Ucraino"
+        "English", "Italian", "French", "German", "Spanish", "Portuguese", 
+        "Russian", "Chinese", "Japanese", "Korean", "Arabic", "Hindi", 
+        "Polish", "Dutch", "Swedish", "Greek", "Turkish", "Hebrew", 
+        "Thai", "Vietnamese", "Indonesian", "Malay", "Ukrainian"
     ]
     
     var body: some View {
         VStack(spacing: 20) {
             Form {
-                Section(header: Text("API Gemini")) {
-                    SecureField("Chiave API Gemini", text: $preferences.apiKey)
+                Section(header: Text("Gemini API")) {
+                    SecureField("Gemini API Key", text: $preferences.apiKey)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     
                     HStack {
                         Button(action: {
                             preferences.apiKey = ""
                         }) {
-                            Text("Cancella")
+                            Text("Clear")
                         }
                         .disabled(preferences.apiKey.isEmpty)
                         
@@ -80,27 +80,27 @@ struct PreferencesView: View {
                                 isApiKeySaved = false
                             }
                         }) {
-                            Text("Salva")
+                            Text("Save")
                         }
                         .disabled(preferences.apiKey.isEmpty)
                     }
                     
                     if isApiKeySaved {
-                        Text("Chiave API salvata!")
+                        Text("API key saved!")
                             .foregroundColor(.green)
                             .font(.caption)
                     }
                 }
                 
-                Section(header: Text("API OCR (Vision)")) {
-                    SecureField("Chiave API OCR", text: $preferences.ocrApiKey)
+                Section(header: Text("OCR API (Vision)")) {
+                    SecureField("OCR API Key", text: $preferences.ocrApiKey)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     
                     HStack {
                         Button(action: {
                             preferences.ocrApiKey = ""
                         }) {
-                            Text("Cancella")
+                            Text("Clear")
                         }
                         .disabled(preferences.ocrApiKey.isEmpty)
                         
@@ -112,26 +112,26 @@ struct PreferencesView: View {
                                 isOCRApiKeySaved = false
                             }
                         }) {
-                            Text("Salva")
+                            Text("Save")
                         }
                         .disabled(preferences.ocrApiKey.isEmpty)
                     }
                     
                     if isOCRApiKeySaved {
-                        Text("Chiave API OCR salvata!")
+                        Text("OCR API key saved!")
                             .foregroundColor(.green)
                             .font(.caption)
                     }
                 }
                 
-                Section(header: Text("Impostazioni Generali")) {
-                    Picker("Lingua predefinita", selection: $preferences.defaultTargetLanguage) {
+                Section(header: Text("General Settings")) {
+                    Picker("Default language", selection: $preferences.defaultTargetLanguage) {
                         ForEach(allLanguages, id: \.self) { language in
                             Text(language)
                         }
                     }
                     
-                    Toggle("Copia automaticamente negli appunti", isOn: $preferences.autoCopyToClipboard)
+                    Toggle("Automatically copy to clipboard", isOn: $preferences.autoCopyToClipboard)
                 }
             }
             .padding()

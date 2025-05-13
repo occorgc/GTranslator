@@ -205,25 +205,25 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSWindowDele
     func setupApplicationMenu() {
         let mainMenu = NSMenu()
         
-        // Menu Applicazione
+        // Application Menu
         let appMenuItem = NSMenuItem(title: "Gtranslator", action: nil, keyEquivalent: "")
         let appMenu = NSMenu()
-        appMenu.addItem(NSMenuItem(title: "Preferenze", action: #selector(showPreferences), keyEquivalent: KeyboardShortcut.openPreferences.rawValue))
+        appMenu.addItem(NSMenuItem(title: "Preferences", action: #selector(showPreferences), keyEquivalent: KeyboardShortcut.openPreferences.rawValue))
         appMenu.addItem(NSMenuItem.separator())
-        appMenu.addItem(NSMenuItem(title: "Esci", action: #selector(NSApplication.terminate(_:)), keyEquivalent: KeyboardShortcut.quit.rawValue))
+        appMenu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: KeyboardShortcut.quit.rawValue))
         appMenuItem.submenu = appMenu
         mainMenu.addItem(appMenuItem)
         
-        // Menu Modifica
-        let editMenuItem = NSMenuItem(title: "Modifica", action: nil, keyEquivalent: "")
-        let editMenu = NSMenu(title: "Modifica")
-        editMenu.addItem(NSMenuItem(title: "Traduci", action: #selector(handleTranslateAction), keyEquivalent: KeyboardShortcut.translate.rawValue))
-        editMenu.addItem(NSMenuItem(title: "Traduci dagli appunti", action: #selector(handleTranslateClipboardAction), keyEquivalent: KeyboardShortcut.translateClipboard.rawValue))
+        // Edit Menu
+        let editMenuItem = NSMenuItem(title: "Edit", action: nil, keyEquivalent: "")
+        let editMenu = NSMenu(title: "Edit")
+        editMenu.addItem(NSMenuItem(title: "Translate", action: #selector(handleTranslateAction), keyEquivalent: KeyboardShortcut.translate.rawValue))
+        editMenu.addItem(NSMenuItem(title: "Translate from Clipboard", action: #selector(handleTranslateClipboardAction), keyEquivalent: KeyboardShortcut.translateClipboard.rawValue))
         editMenu.addItem(NSMenuItem.separator())
-        editMenu.addItem(NSMenuItem(title: "Copia risultato", action: #selector(handleCopyResultAction), keyEquivalent: KeyboardShortcut.copyResult.rawValue))
-        editMenu.addItem(NSMenuItem(title: "Pulisci tutto", action: #selector(handleClearAllAction), keyEquivalent: KeyboardShortcut.clearAll.rawValue))
+        editMenu.addItem(NSMenuItem(title: "Copy Result", action: #selector(handleCopyResultAction), keyEquivalent: KeyboardShortcut.copyResult.rawValue))
+        editMenu.addItem(NSMenuItem(title: "Clear All", action: #selector(handleClearAllAction), keyEquivalent: KeyboardShortcut.clearAll.rawValue))
         editMenu.addItem(NSMenuItem.separator())
-        editMenu.addItem(NSMenuItem(title: "Mostra/Nascondi contesto", action: #selector(handleToggleContextAction), keyEquivalent: KeyboardShortcut.toggleContext.rawValue))
+        editMenu.addItem(NSMenuItem(title: "Toggle Context", action: #selector(handleToggleContextAction), keyEquivalent: KeyboardShortcut.toggleContext.rawValue))
         editMenuItem.submenu = editMenu
         mainMenu.addItem(editMenuItem)
         
@@ -277,25 +277,25 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSWindowDele
         let menu = NSMenu()
         menu.delegate = self
         
-        menu.addItem(NSMenuItem(title: "Preferenze", action: #selector(showPreferences), keyEquivalent: ","))
+        menu.addItem(NSMenuItem(title: "Preferences", action: #selector(showPreferences), keyEquivalent: ","))
         menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Esci", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
+        menu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
         
         return menu
     }
     
     @objc func showPreferences() {
         if preferencesWindow == nil {
-            // Crea una nuova istanza di PreferencesView con un controllo manuale di chiusura
+            // Create a new instance of PreferencesView with manual closure control
             let preferencesView = PreferencesView().onDisappear {
-                // Questo si attiva quando la vista SwiftUI scompare
+                // This triggers when the SwiftUI view disappears
                 self.preferencesWindow?.close()
                 self.preferencesWindow = nil
             }
             
             let hostingController = NSHostingController(rootView: preferencesView)
             
-            // Crea una finestra standard con i controlli appropriati
+            // Create a standard window with appropriate controls
             preferencesWindow = NSWindow(
                 contentRect: NSRect(x: 0, y: 0, width: 400, height: 500),
                 styleMask: [.titled, .closable],
@@ -304,13 +304,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSWindowDele
             )
             
             preferencesWindow?.center()
-            preferencesWindow?.title = "Preferenze Gtranslator"
+            preferencesWindow?.title = "Gtranslator Preferences"
             preferencesWindow?.contentViewController = hostingController
             
-            // Importante: imposta il delegate per gestire correttamente gli eventi di chiusura
+            // Important: set the delegate to properly handle closure events
             preferencesWindow?.delegate = self
             
-            // La finestra sarà rilasciata quando viene chiusa
+            // The window will be released when closed
             preferencesWindow?.isReleasedWhenClosed = true
         }
         
