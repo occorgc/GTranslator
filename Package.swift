@@ -14,6 +14,10 @@ let package = Package(
         .executableTarget(
             name: "GTranslatorMenu",
             dependencies: [],
-            exclude: ["Info.plist"])
+            exclude: ["Info.plist"],
+            swiftSettings: [
+                .unsafeFlags(["-enable-bare-slash-regex"])
+            ]
+        )
     ]
 )
