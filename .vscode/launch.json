@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:gtranslator-mac}",
+            "name": "Debug Gtranslator",
+            "program": "${workspaceFolder:gtranslator-mac}/.build/debug/Gtranslator",
+            "preLaunchTask": "swift: Build Debug Gtranslator"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:gtranslator-mac}",
+            "name": "Release Gtranslator",
+            "program": "${workspaceFolder:gtranslator-mac}/.build/release/Gtranslator",
+            "preLaunchTask": "swift: Build Release Gtranslator"
+        }
+    ]
+}
