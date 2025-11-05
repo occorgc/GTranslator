@@ -4,7 +4,7 @@ import Vision
 import UniformTypeIdentifiers
 
 class TranslatorService: ObservableObject {
-    private let geminiBaseURL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"
+    private let geminiBaseURL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent"
     private let visionBaseURL = "https://vision.googleapis.com/v1/images:annotate"
     
     @Published var isLoading = false
